@@ -1,0 +1,47 @@
+<!-- <pre> {{ formulario.value | json }}</pre>
+<pre> es válido : {{ formulario.valid}}</pre> -->
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <label for="nombre">Nombre:</label>
+  <input id="nombre" formControlName="nombre">
+  <span *ngIf="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched">
+    El nombre es obligatorio
+  </span>
+  <span *ngIf="formulario.get('nombre')?.valid" style="color: green;">
+    ✔️
+  </span>
+
+  <label for="apellidos">Apellidos:</label>
+  <input id="apellidos" formControlName="apellidos">
+  <span *ngIf="formulario.get('apellidos')?.invalid && formulario.get('apellidos')?.touched">
+    Los apellidos son obligatorios
+  </span>
+  <span *ngIf="formulario.get('apellidos')?.valid" style="color: green;">
+    ✔️
+  </span>
+
+  <label for="rango">Rango:</label>
+  <input id="rango" type="number" formControlName="rango" min="1">
+  <span *ngIf="formulario.get('rango')?.invalid && formulario.get('rango')?.touched">
+    El rango debe ser mayor o igual a 1
+  </span>
+  <span *ngIf="formulario.get('rango')?.valid" style="color: green;">
+    ✔️
+  </span>
+
+  <label for="intentos">Intentos:</label>
+  <input id="intentos" type="number" formControlName="intentos" min="1">
+  <span *ngIf="formulario.get('intentos')?.invalid && formulario.get('intentos')?.touched">
+    Los intentos deben ser mayor o igual a 1
+  </span>
+  <span *ngIf="formulario.get('intentos')?.valid" style="color: green;">
+    ✔️
+  </span>
+
+  <button type="submit" [disabled]="formulario.invalid">Recogida datos</button>
+</form>
+
+
+<app-juego  
+*ngIf="gameConfig"
+[gameConfig]="gameConfig" [numeroAleatorio]="numeroAleatorio"  [intentosRestantes]="intentosRestantes"></app-juego>
+  

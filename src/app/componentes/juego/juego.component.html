@@ -1,0 +1,15 @@
+
+ <h1>"Ongi Etorri <span *ngIf="gameConfig?.nombre"> {{gameConfig.nombre  }}</span>  <span *ngIf="gameConfig?.apellidos"> {{gameConfig.apellidos  }}</span>" </h1>
+
+ <form [formGroup]="formulario" (ngSubmit)="comprobarNumero()">
+    <label for="numero">Introduce un número:</label>
+    <input id="numero" formControlName="numero" type="number">
+    <span *ngIf="formulario.get('numero')?.invalid && formulario.get('numero')?.touched" style="color: red;">
+      Por favor, introduce un número válido.
+    </span>
+  
+    <button type="submit" [disabled]="formulario.invalid">Enviar</button>
+  </form>
+  
+  <p *ngIf="mensaje">{{ mensaje }}</p>
+  
